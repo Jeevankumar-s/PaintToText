@@ -2,14 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Tesseract from 'tesseract.js';
 
 export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
-  
-  const audioFiles = {
-    a: '/Sounds/a.opus',
-    b: '/Sounds/b.opus',
-    c: '/Sounds/c.opus',
-    d: '/Sounds/d.opus'
-  };
-  
+
   
   const width = thickness;
   const widthHalf = width ? width / 2 : 0;
@@ -48,28 +41,18 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
       });         
       console.log('OCR Result:', result.data.text);
      playSound(result.data.text.toLowerCase());
-      alert(result.data.text);
+      // alert(result.data.text);
     } catch (error) {
       console.error('Error performing OCR:', error);
     }
   };
 
   const playSound = (character) => {
-    //a
-    //"a"
-    const finalCharacter=character +""
-    console.log("Playing sound for character:", finalCharacter);
-    console.log("Audio file path:", audioFiles[finalCharacter]);
-  
-    if (audioFiles[finalCharacter]) {
-      const audio = new Audio(audioFiles[finalCharacter]);
-      audio.play();
-    } else {
-      console.log("No audio file found for character:", character);
-    }
+    const audio = new Audio(`/sounds/${character}.opus`);
+    audio.play();
   };
-  
-  
+
+
   
   return (
     <section className='p-6 w-full'>
