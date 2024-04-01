@@ -1,19 +1,17 @@
-import React, { useRef } from 'react';
-import SideToolBar from './components/SideToolBar';
-import CanvasPreview from './components/CanvasPreview';
-import usePaintCustomHook from './paintCustomHook';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Homepage from './Pages/Homepage';
+import Chatpage from './Pages/Chatpage'; // Assuming Login component exists in the same directory
+
 function App() {
-  const [{ canvasRef, ...states }, { init, ...handleFn }] = usePaintCustomHook();
   return (
-    <div className='flex h-screen'>
-      <SideToolBar {...handleFn} {...states} />
-      <CanvasPreview
-        canvasRef={canvasRef}
-        init={init}
-        eraser={states.isEraser}
-        thickness={states.thickness}
-      />
-    </div>
+    <Router>
+      <Routes>
+        {/* Use the "element" prop instead of "component" for rendering components */}
+        <Route path="/chats" element={<Homepage />} exact />
+        <Route path="/chat" element={<Chatpage />} />
+      </Routes>
+    </Router>
   );
 }
 
