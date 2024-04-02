@@ -5,13 +5,13 @@ import { VStack } from "@chakra-ui/layout";
 import { useToast } from "@chakra-ui/toast";
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom"; // Updated import statement
 
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const toast = useToast();
-  const history = useNavigate();
+  const history = useNavigate(); // Using useNavigate from react-router-dom
 
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -23,7 +23,7 @@ const Signup = () => {
     setPicLoading(true);
     if (!name || !email || !password || !confirmpassword) {
       toast({
-        title: "Please Fill all the Feilds",
+        title: "Please Fill all the Fields",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -40,6 +40,7 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
+      setPicLoading(false);
       return;
     }
     console.log(name, email, password);
@@ -50,12 +51,13 @@ const Signup = () => {
         },
       };
       const response = await axios.post(
-        "http://localhost:3303/signup",
+        "https://crazy-fly-kit.cyclic.app/signup",
         {
           name,
           email,
           password,
-        }
+        },
+        config
       );
       console.log(response);
       toast({
@@ -65,12 +67,13 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(response));
+      localStorage.setItem("userInfo", JSON.stringify(response.data)); // Using response.data for localStorage
       setPicLoading(false);
-      history.push("/welcome");
+      history.push("/welcome"); // Using history.push from react-router-dom
     } catch (error) {
+      console.log("Error:", error);
       toast({
-        title: "Error Occured!",
+        title: "Error Occurred!",
         description: error.response.data.error,
         status: "error",
         duration: 5000,
@@ -113,12 +116,12 @@ const Signup = () => {
           </InputRightElement>
         </InputGroup>
       </FormControl>
-      <FormControl id="password" isRequired>
+      <FormControl id="confirm-password" isRequired>
         <FormLabel>Confirm Password</FormLabel>
         <InputGroup size="md">
           <Input
             type={show ? "text" : "password"}
-            placeholder="Confirm password"
+            placeholder="Confirm Password"
             onChange={(e) => setConfirmpassword(e.target.value)}
           />
           <InputRightElement width="4.5rem">

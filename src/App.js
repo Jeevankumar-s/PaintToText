@@ -2,7 +2,9 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Homepage from './Pages/Homepage';
 import Chatpage from './Pages/Chatpage';
-import Welcomepage from './components/Welcomepage'; // Assuming Login component exists in the same directory
+import Welcomepage from './components/Welcomepage';
+import NumComponent from './components/NumComponent';
+import ABCDComponent from './components/ABCDComponent';
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
         <Route path="/login" element={<Homepage />} exact />
         <Route path="/welcome" element={<Welcomepage />} exact />
         <Route path="/paint" element={<Chatpage />} />
+        <Route path="/num-paint" element={<NumComponent />} />
+        <Route path="/abcd-paint" element={<ABCDComponent />} />
       </Routes>
     </Router>
   );

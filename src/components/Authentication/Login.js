@@ -41,7 +41,7 @@ const Login = () => {
       };
   
       const response = await axios.post(
-        "http://localhost:3303/login",
+        "https://crazy-fly-kit.cyclic.app/login",
         { email, password },
         config
       );
