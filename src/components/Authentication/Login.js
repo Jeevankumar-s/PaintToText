@@ -23,7 +23,7 @@ const Login = () => {
     setLoading(true);
     if (!email || !password) {
       toast({
-        title: "Please Fill all the Feilds",
+        title: "Please Fill all the Fields",
         status: "warning",
         duration: 5000,
         isClosable: true,
@@ -32,20 +32,21 @@ const Login = () => {
       setLoading(false);
       return;
     }
-
+  
     try {
       const config = {
         headers: {
           "Content-type": "application/json",
         },
       };
-
-      const { data } = await axios.post(
-        "/api/user/login",
+  
+      const response = await axios.post(
+        "http://localhost:3303/login",
         { email, password },
         config
       );
-
+      
+      console.log(response.data);
       toast({
         title: "Login Successful",
         status: "success",
@@ -53,13 +54,13 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", JSON.stringify(response.data));
       setLoading(false);
-      history.push("/chats");
+       history.push("/welcome");
     } catch (error) {
       toast({
-        title: "Error Occured!",
-        description: error.response.data.message,
+        title: "Error Occurred!",
+        description: error.response.data.error, // Assuming your server sends error messages in the "error" field
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -68,6 +69,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  
 
   return (
     <VStack spacing="10px">
