@@ -48,18 +48,9 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
   };
 
   const playSound = (character) => {
-    console.log(character);
-    if (/^[a-zA-Z]+$/.test(character)) {
-      const defaultAudio = new Audio(`/sounds/default.opus`);
-      defaultAudio.play();
-    } else {
       const audio = new Audio(`/sounds/${character}.opus`);
-      console.log(audio);
       audio.play();
-    }
-  };
-  
-
+};
 
   const handleContextMenu = (event) => {
     event.preventDefault(); // Prevent default context menu
