@@ -34,8 +34,8 @@ function Homepage() {
         borderRadius="lg"
         borderWidth="1px"
       >
-        <Text fontSize="4xl" fontFamily="Work sans">
-          Paavai app
+        <Text align="center" fontSize="4xl" fontFamily="Work sans">
+        Education 4.0
         </Text>
       </Box>
       <Box bg="white" w="100%" p={4} borderRadius="lg" borderWidth="1px">

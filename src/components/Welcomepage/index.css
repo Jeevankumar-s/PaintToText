@@ -1,0 +1,66 @@
+/* WelcomePage.css */
+
+/* Main container */
+.welcome-page {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  /* Main heading */
+  h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Subheading */
+  h2 {
+    font-size: 2rem;
+    color: #666;
+    margin-top: 20px;
+  }
+  
+  /* Button container */
+  .button-container {
+    margin-top: 40px;
+  }
+  
+  /* Button styles */
+  .button {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 0 20px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Responsive adjustments */
+  @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    .button {
+      font-size: 1.2rem;
+      padding: 12px 24px;
+      margin: 0 10px;
+    }
+  }
+  

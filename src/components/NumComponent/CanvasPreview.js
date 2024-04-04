@@ -38,7 +38,7 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
         tessedit_char_whitelist: '0123456789'
       });
       console.log('OCR Result:', result.data.text);
-      console.log(result);
+      // console.log(result);
       playSound(result.data.text);
     } catch (error) {
       console.error('Error performing OCR:', error);
@@ -46,8 +46,28 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
   };
   
 
-  const playSound = (character) => {
-    const audio = new Audio(`/sounds/${character}.opus`);
+  const getSoundFileName = (character) => {
+    console.log("character",character)
+    const soundFilesMap = {
+      '0': 'zero',
+      1: 'one',
+      2: 'two',
+      '3': 'three',
+      '4': 'four',
+      '5': 'five',
+      '6': 'six',
+      '7': 'seven',
+      '8': 'eight',
+      '9': 'nine',
+    };
+
+    return soundFilesMap[character] || 'default'; // Default sound file name if character not found
+  };
+
+  const playSound = (number) => {
+   const final =getSoundFileName(number)
+   console.log(final);
+   const audio = new Audio(`/sounds/${final}.opus`);
     audio.play();
   };
 

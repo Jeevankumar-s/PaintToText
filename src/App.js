@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Routes>
         {/* Use the "element" prop instead of "component" for rendering components */}
-        <Route path="/login" element={<Homepage />} exact />
+        <Route path="/" element={<Homepage />} exact />
         <Route path="/welcome" element={<Welcomepage />} exact />
         <Route path="/paint" element={<Chatpage />} />
         <Route path="/num-paint" element={<NumComponent />} />

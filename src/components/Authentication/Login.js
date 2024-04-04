@@ -56,7 +56,7 @@ const Login = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(response.data));
       setLoading(false);
-       history.push("/welcome");
+       history("/welcome");
     } catch (error) {
       toast({
         title: "Error Occurred!",
@@ -106,17 +106,6 @@ const Login = () => {
         isLoading={loading}
       >
         Login
-      </Button>
-      <Button
-        variant="solid"
-        colorScheme="red"
-        width="100%"
-        onClick={() => {
-          setEmail("guest@example.com");
-          setPassword("123456");
-        }}
-      >
-        Get Guest User Credentials
       </Button>
     </VStack>
   );

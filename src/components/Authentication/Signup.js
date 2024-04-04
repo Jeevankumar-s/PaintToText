@@ -69,7 +69,7 @@ const Signup = () => {
       });
       localStorage.setItem("userInfo", JSON.stringify(response.data)); // Using response.data for localStorage
       setPicLoading(false);
-      history.push("/welcome"); // Using history.push from react-router-dom
+      history("/welcome"); // Using history.push from react-router-dom
     } catch (error) {
       console.log("Error:", error);
       toast({
