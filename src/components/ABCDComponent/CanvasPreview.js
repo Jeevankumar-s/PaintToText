@@ -48,15 +48,34 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
   };
 
   const playSound = (character) => {
-    const audio = new Audio(`/sounds/${character}.opus`);
-    audio.play();
+    console.log(character);
+    if (/^[a-zA-Z]+$/.test(character)) {
+      const defaultAudio = new Audio(`/sounds/default.opus`);
+      defaultAudio.play();
+    } else {
+      const audio = new Audio(`/sounds/${character}.opus`);
+      console.log(audio);
+      audio.play();
+    }
+  };
+  
+
+
+  const handleContextMenu = (event) => {
+    event.preventDefault(); // Prevent default context menu
+    clearCanvas(); // Clear the canvas
   };
 
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
+  };
 
   
   return (
     <section className='p-6 w-full'>
-      <canvas style={{ cursor }} className='h-full w-full' ref={canvasRef} />
+      <canvas style={{ cursor }} className='h-full w-full' ref={canvasRef}  onContextMenu={handleContextMenu} />
       <button onClick={handleOCR}>Perform OCR</button>
     </section>
   );

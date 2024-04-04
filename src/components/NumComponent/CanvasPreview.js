@@ -38,7 +38,6 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
         tessedit_char_whitelist: '0123456789'
       });
       console.log('OCR Result:', result.data.text);
-      // console.log(result);
       playSound(result.data.text);
     } catch (error) {
       console.error('Error performing OCR:', error);
@@ -46,37 +45,64 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
   };
   
 
-  const getSoundFileName = (character) => {
-    console.log("character",character)
-    const soundFilesMap = {
-      '0': 'zero',
-      1: 'one',
-      2: 'two',
-      '3': 'three',
-      '4': 'four',
-      '5': 'five',
-      '6': 'six',
-      '7': 'seven',
-      '8': 'eight',
-      '9': 'nine',
-    };
+  // const getSoundFileName = (character) => {
+  //   console.log("character",character)
+  //   const soundFilesMap = {
+  //     '0': 'zero',
+  //     1: 'one',
+  //     2: 'two',
+  //     '3': 'three',
+  //     '4': 'four',
+  //     '5': 'five',
+  //     '6': 'six',
+  //     '7': 'seven',
+  //     '8': 'eight',
+  //     '9': 'nine',
+  //   };
 
-    return soundFilesMap[character] || 'default'; // Default sound file name if character not found
+  //   return soundFilesMap[character] || "default"; // Default sound file name if character not found
+  // };
+
+  // const playSound = (number) => {
+  // //  const final =getSoundFileName(number)
+  // //  console.log(final);
+  // //  const num=1
+  //  const audio = new Audio(`/sounds/${number}.opus`);
+  // //  console.log(audio);
+  //   audio.play();
+  // };
+
+  const playSound = (character) => {
+    console.log(character);
+    if (!/^[a-zA-Z]+$/.test(character)) {
+      // If the character is not alphabetic, play the default audio
+      const audio = new Audio(`/sounds/${character}.opus`);
+      console.log(audio);
+      audio.play();
+    } else {
+      // If the character is alphabetic, play the corresponding audio
+      const defaultAudio = new Audio(`/sounds/default.opus`);
+      defaultAudio.play();
+    }
+  };
+  
+
+  const handleContextMenu = (event) => {
+    event.preventDefault(); // Prevent default context menu
+    clearCanvas(); // Clear the canvas
   };
 
-  const playSound = (number) => {
-   const final =getSoundFileName(number)
-   console.log(final);
-   const audio = new Audio(`/sounds/${final}.opus`);
-    audio.play();
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext('2d');
+    context.clearRect(0, 0, canvas.width, canvas.height);
   };
-
 
   
   return (
     <section className='p-6 w-full'>
-      <canvas style={{ cursor }} className='h-full w-full' ref={canvasRef} />
-      <button onClick={handleOCR}>Perform OCR</button>
+      <canvas style={{ cursor }} className='h-full w-full' ref={canvasRef} onContextMenu={handleContextMenu} />
+      <button onClick={handleOCR}>Play Sound</button>
     </section>
   );
 }
