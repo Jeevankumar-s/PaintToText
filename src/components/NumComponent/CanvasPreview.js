@@ -36,6 +36,7 @@ export default function CanvasPreview({ canvasRef, init, thickness }) {
         tessedit_char_whitelist: '0123456789'
       });
       console.log('OCR Result:', result.data.text);
+      playSound(result.data.text);
     } catch (error) {
       console.error('Error performing OCR:', error);
     }
@@ -43,7 +44,6 @@ export default function CanvasPreview({ canvasRef, init, thickness }) {
 
   const playSound = (character) => {
 
-    console.log("character",character);
     if (!isNaN(character)) {
         const audioUrl = `https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/${character}.opus?alt=media&token=e9960738-d08c-42c7-9951-50a27d6b3d57`;
         const audio = new Audio(audioUrl);
