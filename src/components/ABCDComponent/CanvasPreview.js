@@ -68,9 +68,11 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
       const defaultAudio = new Audio(`/sounds/default.opus`);
       defaultAudio.play();
     } else {
-      const audio = new Audio(`/sounds/${extractedAlphabets[0]}.opus`);
+      const audioUrl = `https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/${extractedAlphabets[0]}.opus?alt=media&token=e9960738-d08c-42c7-9951-50a27d6b3d57`;
+      const audio = new Audio(audioUrl);
       audio.play();
     }
+    
   };
   
 

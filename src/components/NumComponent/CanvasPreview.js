@@ -36,22 +36,21 @@ export default function CanvasPreview({ canvasRef, init, thickness }) {
         tessedit_char_whitelist: '0123456789'
       });
       console.log('OCR Result:', result.data.text);
-      playSound(result.data.text);
     } catch (error) {
       console.error('Error performing OCR:', error);
     }
   };
 
   const playSound = (character) => {
-    console.log(character);
+
+    console.log("character",character);
     if (!isNaN(character)) {
-      // If the character is a number, play the corresponding audio
-      const audio = new Audio(`/sounds/${character}.opus`);
-      console.log(audio);
-      audio.play();
+        const audioUrl = `https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/${character}.opus?alt=media&token=e9960738-d08c-42c7-9951-50a27d6b3d57`;
+        const audio = new Audio(audioUrl);
+        audio.play();
     } else {
-      // If the character is not a number, play the default audio
-      const defaultAudio = new Audio(`/sounds/default.opus`);
+      
+      const defaultAudio = new Audio(`https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/default.opus?alt=media&token=2ab2ec41-19a9-47db-8857-b3639180d9a3`);
       defaultAudio.play();
     }
   };
