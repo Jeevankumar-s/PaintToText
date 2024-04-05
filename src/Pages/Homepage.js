@@ -19,7 +19,7 @@ function Homepage() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
 
-    if (user) navigate("/abcd");
+    if (user) navigate("/welcome");
   }, [navigate]);
 
   return (

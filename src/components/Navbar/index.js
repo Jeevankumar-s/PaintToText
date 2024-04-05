@@ -8,6 +8,7 @@ function Navbarr() {
   const history = useNavigate();
 
   const handleLogout = () => {
+    localStorage.removeItem("userInfo");
     history('/');
   };
 

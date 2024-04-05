@@ -47,10 +47,32 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
     }
   };
 
+
+  const extractAlphabets = (text) => {
+    // Remove non-alphabetic characters using regex
+    const cleanedText = text.replace(/[^a-zA-Z]/g, '');
+    
+    // Split the cleaned text into individual characters
+    const characters = cleanedText.split('');
+    if (characters.length > 1) {
+      return null;
+    }
+    
+    return characters;
+  };
+  
   const playSound = (character) => {
-      const audio = new Audio(`/sounds/${character}.opus`);
+    const extractedAlphabets = extractAlphabets(character);
+  
+    if (extractedAlphabets === null || extractedAlphabets.length > 1) {
+      const defaultAudio = new Audio(`/sounds/default.opus`);
+      defaultAudio.play();
+    } else {
+      const audio = new Audio(`/sounds/${extractedAlphabets[0]}.opus`);
       audio.play();
-};
+    }
+  };
+  
 
   const handleContextMenu = (event) => {
     event.preventDefault(); // Prevent default context menu
