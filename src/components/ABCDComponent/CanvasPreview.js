@@ -65,12 +65,13 @@ export default function CanvasPreview({ canvasRef, init, thickness, eraser }) {
     const extractedAlphabets = extractAlphabets(character);
   
     if (extractedAlphabets === null || extractedAlphabets.length > 1) {
-      const defaultAudio = new Audio(`/sounds/default.opus`);
+      const defaultAudio = new Audio(`https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/default.opus?alt=media&token=2ab2ec41-19a9-47db-8857-b3639180d9a3`);
       defaultAudio.play();
     } else {
       const audioUrl = `https://firebasestorage.googleapis.com/v0/b/audio-f7ef5.appspot.com/o/${extractedAlphabets[0]}.opus?alt=media&token=e9960738-d08c-42c7-9951-50a27d6b3d57`;
       const audio = new Audio(audioUrl);
       audio.play();
+      
     }
     
   };
